@@ -42,9 +42,9 @@ module ActiveModel::Serialization
 end
 
 # Also hook into Mongoid Serialization
-module Mongoid::Serialization
-  include Rails3AMF::Serialization
-end
+#module Mongoid::Serialization
+#  include Rails3AMF::Serialization
+#end
 
 # Make ActiveSupport times serialize properly
 class ActiveSupport::TimeWithZone
