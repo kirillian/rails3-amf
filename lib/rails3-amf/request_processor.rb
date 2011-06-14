@@ -33,9 +33,7 @@ module Rails3AMF
       # Parse method and load service
       path = method.split('.')
       method_name = path.pop
-      method_name = method_name.underscore
       controller_name = path.pop
-      controller_name.sub! /Service$/i, 'Controller'
       controller = get_service controller_name, method_name
 
       # Create rack request
@@ -45,7 +43,7 @@ module Rails3AMF
       params = build_params(controller_name, method_name, args)
       env['rails3amf.params'] = params.merge(:controller => controller_name.sub(/Controller$/, '').downcase.to_sym)
       req.params.merge!(params)
-
+      
       # Run it
       con = controller.new
       res = con.dispatch(method_name, req)
